@@ -1,30 +1,4 @@
-"""
-Mask R-CNN
-Train on the ear segmentation dataset from the
 
-
-------------------------------------------------------------
-
-Usage: import the module (see Jupyter notebooks for examples), or run from
-       the command line as such:
-
-    # Train a new model starting from ImageNet weights
-    python3 Ear1.py train --dataset=/path/to/dataset --subset=train --weights=imagenet
-
-    # Train a new model starting from specific weights file
-    python3 Ear1.py train --dataset=/path/to/dataset --subset=train --weights=/path/to/weights.h5
-
-    # Resume training a model that you had trained earlier
-    python3 Ear1.py train --dataset=/path/to/dataset --subset=train --weights=last
-
-    # Generate submission file
-    python3 Ear1.py detect --dataset=/path/to/dataset --subset=train --weights=<last or /path/to/weights.h5>
-"""
-
-# Set matplotlib backend
-# This has to be done before other importa that might
-# set it, but only if we're running in script mode
-# rather than being imported.
 if __name__ == '__main__':
     import matplotlib
     # Agg backend runs without a display
@@ -167,13 +141,6 @@ class EarDataset(utils.Dataset):
         # Naming the dataset ear, and the class ear
         self.add_class("ear", 1, "ear")
 
-        # Which subset?
-        # "val": use hard-coded list above
-        # "train": use data from stage1_train minus the hard-coded list above
-        # else: use the data from the specified sub-directory
-        #assert subset in ["train", "val", "stage1_train", "stage1_test", "stage2_test"]
-        #subset_dir = "stage1_train" if subset in ["train", "val"] else subset
-        #dataset_dir = os.path.join(dataset_dir, subset_dir)
         if subset == "test":
             #image_ids = next(os.walk(dataset_dir))[1]
             #image_ids = list(set(image_ids))
